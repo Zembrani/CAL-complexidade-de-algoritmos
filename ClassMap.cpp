@@ -3,46 +3,64 @@
 #include <string>
 #include <ctime>
 #include <utility>
+#include <chrono>
 
-int start, stop, tempo_insercao, tempo_busca;
+double start, stop, tempo_insercao, tempo_busca;
 
-// typedef std::pair <std::string, std::string> pss;
+auto stt = std::chrono::high_resolution_clock::now();
+void iCronometro(void) {
+    stt = std::chrono::high_resolution_clock::now();
+}
+
+double pCronometro(void) {
+    auto finish = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = finish - stt;
+    return elapsed.count();
+}
 
 int main(int argc, char const *argv[]) {
 	
 	// std::map <pss, int> mapa, it;
 	std::map <std::string, int> mapa, it;
 	std::string nome, sobrenome, nomecompleto;
-	int id, contador;
+	int id, contador, temp_imprimir;
 
-	start = clock();
+	std::cout << std::endl;
+	std::cout << "-------- ARVORE --------" << std::endl;
+
+	iCronometro();
 
 	std::cin >> contador;
+	std::cout << "Insercao - " << contador << std::endl;
 	while(contador--){
 		std::cin >> id >> nome >> sobrenome;
 		nomecompleto = nome + sobrenome;
-		// mapa[make_pair(nome, sobrenome)] = id;
 		mapa[nomecompleto] = id;
 	}
 
-	stop = clock();
+	stop = pCronometro();
 	tempo_insercao = stop - start;
 
-	start = clock();
+	iCronometro();
 
 	std::cin >> contador;
+	std::cout << "Busca - " << contador << std::endl;
 	while(contador--){
 		std::cin >> nome >> sobrenome;
 		nomecompleto = nome + sobrenome;
-		std::cout << mapa.find(nomecompleto)->second << '\n';
+		temp_imprimir = mapa.find(nomecompleto)->second;
+		// std::cout << temp_imprimir << std::endl;
 	}
 
-	stop = clock();
+	stop = pCronometro();
 	tempo_busca = stop - start;
-	std::cout << "TEMPO INSERCAO= " << (tempo_insercao)*1000/(double) CLOCKS_PER_SEC << " segundos" << std::endl;
+	
+	std::cout << "TEMPO INSERCAO= " << (tempo_insercao) << " segundos" << std::endl;
 	std::cout << std::endl;
-	std::cout << "TEMPO BUSCA= " << (tempo_busca)*1000/(double) CLOCKS_PER_SEC << " segundos" << std::endl;
+	std::cout << "TEMPO BUSCA= " << (tempo_busca) << " segundos" << std::endl;
 	std::cout << std::endl;
-	std::cout << "TEMPO TOTAL = " << (tempo_busca + tempo_insercao)*1000/(double) CLOCKS_PER_SEC << " segundos" << std::endl;
+	std::cout << "TEMPO TOTAL = " << (tempo_busca + tempo_insercao) << " segundos" << std::endl;
+	std::cout << "------------------" <<std::endl;
+	std::cout << std::endl;
 	return 0;
 }
