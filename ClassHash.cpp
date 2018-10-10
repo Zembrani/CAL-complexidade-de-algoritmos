@@ -37,30 +37,30 @@ int main(int argc, char const *argv[]){
 	std::cout << "-------- VETOR DE HASH --------" << std::endl;
 	
 	iCronometro();
-	// --------- Parte para imprimir a ocupacao por pos do vetor ------
-	// std::cin >> contador;
-	// // std::cout << "leitura - " << contador << std::endl;
-	// while(contador--){
-	// 	std::cin >> id >> nome >> sobrenome;
-	// 	nomecompleto = nome + sobrenome;
-	// 	vetor[gerarHash(nomecompleto)][nomecompleto] = id;
-	// }
-	// stop = pCronometro();
-	// tempo_insercao = stop - start;
 
+	std::cin >> contador;
+	while(contador--){ // 								O(contador1)
+		std::cin >> id >> nome >> sobrenome;
+		nomecompleto = nome + sobrenome;
+		vetor[gerarHash(nomecompleto)][nomecompleto] = id; // O(len(nomecompleto))
+	}
+	stop = pCronometro();
+	tempo_insercao = stop - start;
+
+	// --------- Parte para imprimir a ocupacao por pos do vetor ------
 	// for(contador = 0; contador < MODE; contador++){
 	// 	std::cout << contador << " "<< vetor[contador].size() << std::endl;
 	// }
-	// ------------------------------------------
+	// -----------------------------------------------------------------
 
 	iCronometro();
 
 	std::cin >> contador;
 	std::cout << "busca - " << contador << std::endl;
-	while(contador--) {
+	while(contador--) {//								O(contador2)
 		std::cin >> nome >> sobrenome;
 		nomecompleto = nome + sobrenome;
-		temp_imprimir = vetor[gerarHash(nomecompleto)][nomecompleto];
+		temp_imprimir = vetor[gerarHash(nomecompleto)][nomecompleto]; // O(len(nomecompleto))
 		// std::cout << temp_imprimir << std::endl;
 	}
 
@@ -80,3 +80,23 @@ int main(int argc, char const *argv[]){
 
 	return 0;
 }
+
+
+/*
+
+Complexidade Tempo
+
+O = O(contador1 * len(nomecompleto)) + O(contador2 * len(tamanhocompelto)) + O(1)
+
+como o len(nomecompleto) neste caso de teste é quase constante podemos desconsiderar
+
+O = O(contador1) + O(contador2) + O(1)
+
+O(contador1 + contador2)
+
+Complexidade Espaço
+
+O(MODE)
+
+
+*/

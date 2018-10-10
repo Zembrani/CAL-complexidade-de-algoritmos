@@ -31,11 +31,10 @@ int main(int argc, char const *argv[]) {
 	iCronometro();
 
 	std::cin >> contador;
-	std::cout << "Insercao - " << contador << std::endl;
-	while(contador--){
+	while(contador--){// 									O(contador1)
 		std::cin >> id >> nome >> sobrenome;
 		nomecompleto = nome + sobrenome;
-		mapa[nomecompleto] = id;
+		mapa[nomecompleto] = id;	//						O(1)
 	}
 
 	stop = pCronometro();
@@ -44,11 +43,10 @@ int main(int argc, char const *argv[]) {
 	iCronometro();
 
 	std::cin >> contador;
-	std::cout << "Busca - " << contador << std::endl;
-	while(contador--){
+	while(contador--){ // 									O(contador2)
 		std::cin >> nome >> sobrenome;
 		nomecompleto = nome + sobrenome;
-		temp_imprimir = mapa.find(nomecompleto)->second;
+		temp_imprimir = mapa.find(nomecompleto)->second;// 	O(log contador1)
 		// std::cout << temp_imprimir << std::endl;
 	}
 
@@ -64,3 +62,15 @@ int main(int argc, char const *argv[]) {
 	std::cout << std::endl;
 	return 0;
 }
+
+/*
+
+Complexidade Tempo
+
+O = O(contador1) + O(contador2 * log contador1) + O(1)
+
+Complexidade Espaço
+
+O(log contador1)
+
+*/

@@ -39,10 +39,9 @@ int main(){
     iCronometro();
 
     std::cin >> contador;
-    std::cout << "Insercao - " << contador << std::endl;
-    while(contador--){
+    while(contador--){	// 									O(contador1)
     	std::cin >> temp.id >> temp.nome >> temp.sobrenome;
-        vetor.push_back(temp);
+        vetor.push_back(temp); //  							O(1)
     }
 
     stop = pCronometro();
@@ -54,11 +53,10 @@ int main(){
 
 	int i;
     std::cin >> contador;
-    std::cout << "Busca - " << contador << std::endl;
-    while(contador--){
+    while(contador--){	//									O(contador2)
     	std::cin >> nome >> sobrenome;
-    	for(i = 0; i<vetor.size(); i++){
-    		if (vetor[i].nome.compare(nome)==0 and vetor[i].sobrenome.compare(sobrenome)==0) {
+    	for(i = 0; i<vetor.size(); i++){//					O(contador1)
+    		if (vetor[i].nome.compare(nome)==0 and vetor[i].sobrenome.compare(sobrenome)==0) { // O(1)
                 temp_imprime = vetor[i].id;
     			// std::cout << temp_imprime << std::endl;
     			i = vetor.size();
@@ -81,4 +79,16 @@ int main(){
     std::cout << std::endl;
 
 	return 0;
-}	 
+}
+
+
+/*
+
+Complexidade Tempo
+
+O = O(contador1) + O(contador2 * contador1) + O(1)
+
+Complexidade espaço
+
+O(contador1)
+*/	 
