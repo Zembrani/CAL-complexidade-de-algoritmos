@@ -16,5 +16,5 @@ plt.xlabel('Quantidade')
 plt.ylabel('Tempo (s)') 
   
 plt.legend()
-plt.title('Tempos para insersões') 
+plt.title('Tempos para Buscas') 
 plt.show()
