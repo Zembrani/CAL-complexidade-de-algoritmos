@@ -19,7 +19,7 @@ double pCronometro(void) {
 }
 
 int main(int argc, char const *argv[]) {
-	
+
 	// std::map <pss, int> mapa, it;
 	std::map <std::string, int> mapa, it;
 	std::string nome, sobrenome, nomecompleto;
@@ -31,10 +31,10 @@ int main(int argc, char const *argv[]) {
 	iCronometro();
 
 	std::cin >> contador;
-	while(contador--){// 									O(contador1)
+	while(contador--){
 		std::cin >> id >> nome >> sobrenome;
 		nomecompleto = nome + sobrenome;
-		mapa[nomecompleto] = id;	//						O(1)
+		mapa[nomecompleto] = id;	//						O(log n * len(nomecompleto))
 	}
 
 	stop = pCronometro();
@@ -43,16 +43,16 @@ int main(int argc, char const *argv[]) {
 	iCronometro();
 
 	std::cin >> contador;
-	while(contador--){ // 									O(contador2)
+	while(contador--){
 		std::cin >> nome >> sobrenome;
 		nomecompleto = nome + sobrenome;
-		temp_imprimir = mapa.find(nomecompleto)->second;// 	O(log contador1)
+		temp_imprimir = mapa.find(nomecompleto)->second;// 	O(log n * len(nomecompleto))
 		// std::cout << temp_imprimir << std::endl;
 	}
 
 	stop = pCronometro();
 	tempo_busca = stop - start;
-	
+
 	std::cout << "TEMPO INSERCAO= " << (tempo_insercao) << " segundos" << std::endl;
 	std::cout << std::endl;
 	std::cout << "TEMPO BUSCA= " << (tempo_busca) << " segundos" << std::endl;
@@ -67,10 +67,10 @@ int main(int argc, char const *argv[]) {
 
 Complexidade Tempo
 
-O = O(contador1) + O(contador2 * log contador1) + O(1)
+O = O(log contador * len(nomecompleto)) + O( log contador * len(nomecompleto)) + O(1)
 
 Complexidade Espaço
 
-O(log contador1)
+O(log contador)
 
 */
